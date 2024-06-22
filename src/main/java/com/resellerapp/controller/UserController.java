@@ -90,6 +90,26 @@ public class UserController {
         }
 
         boolean success = this.userService.login(loginDTO);
+
+        if (!success) {
+            redirectAttributes.addFlashAttribute("loginData", loginDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginData", bindingResult);
+            redirectAttributes.addFlashAttribute("loginError", "Invalid username or password!");
+
+            return "redirect:/users/login";
+        }
+
+        return "redirect:/home";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        if (!userSession.isLoggedIn()) {
+            return "redirect:/";
+        }
+
+        userSession.logout();
+
+        return "redirect:/";
+    }
 }
