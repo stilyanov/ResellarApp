@@ -1,20 +1,33 @@
 package com.resellerapp.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "conditions")
 public class Condition extends BaseEntity {
 
     @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
     private ConditionEnum name;
 
     @Column(nullable = false)
     private String description;
 
+    @OneToMany(mappedBy = "condition")
+    private List<Offer> offers;
+
     public Condition() {
+        this.offers = new ArrayList<Offer>();
+    }
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 
     public Condition(ConditionEnum condition, String description) {

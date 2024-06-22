@@ -1,9 +1,6 @@
 package com.resellerapp.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +17,10 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(mappedBy = "seller", fetch = FetchType.EAGER)
     private List<Offer> offers;
 
-    @OneToMany(mappedBy = "buyer")
+    @OneToMany(mappedBy = "buyer", fetch = FetchType.EAGER)
     private List<Offer> boughtOffers;
 
     public User() {

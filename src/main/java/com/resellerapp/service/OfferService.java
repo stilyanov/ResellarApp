@@ -2,6 +2,7 @@ package com.resellerapp.service;
 
 import com.resellerapp.config.UserSession;
 import com.resellerapp.model.dto.AddOfferDTO;
+import com.resellerapp.model.dto.UserOfferDTO;
 import com.resellerapp.model.entity.Condition;
 import com.resellerapp.model.entity.Offer;
 import com.resellerapp.model.entity.User;
@@ -10,7 +11,10 @@ import com.resellerapp.repository.OfferRepository;
 import com.resellerapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OfferService {
@@ -53,6 +57,18 @@ public class OfferService {
         this.offerRepository.save(offer);
 
         return true;
+
+    }
+
+
+    public List<Offer> getOffersFromCurrentUser() {
+//
+//        User user = userRepository.findById(userSession.id()).orElse(null);
+//        return user.getOffers();
+
+        List<Offer> offers = offerRepository.findAll();
+
+        return offers;
 
     }
 }
