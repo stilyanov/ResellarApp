@@ -18,7 +18,29 @@ public class Offer extends BaseEntity {
     @ManyToOne(optional = false)
     private Condition condition;
 
+    @ManyToOne
+    private User seller;
+
+    @ManyToOne
+    private User buyer;
+
     public Offer() {
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
     public String getDescription() {

@@ -20,10 +20,10 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "seller")
     private List<Offer> offers;
 
-    @OneToMany
+    @OneToMany(mappedBy = "buyer")
     private List<Offer> boughtOffers;
 
     public User() {
